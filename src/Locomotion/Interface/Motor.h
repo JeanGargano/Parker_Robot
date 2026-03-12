@@ -8,12 +8,13 @@ private:
     Servo servo;
     int pin;
     int currentAngle;
+    bool attached;
 
 public:
-    Motor(int pin);
-    void attach();
-    void setAngle(int angle);
-    int getAngle();
+    Motor(int pin);            
+    void attach();             
+    void setAngle(int angle);  
+    int getAngle();          
 };
 
 #endif

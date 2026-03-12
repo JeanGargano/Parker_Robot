@@ -1,8 +1,16 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
+enum CommandType {
+    STAND,
+    SIT,
+    HELLO,
+    WALK,
+    UNKNOWN
+};
+
 struct Command {
-    int servoAngle;
+    CommandType type;
 };
 
 #endif

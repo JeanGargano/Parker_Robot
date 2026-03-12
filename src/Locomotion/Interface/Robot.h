@@ -8,10 +8,15 @@
 class Robot {
 private:
     LocomotionSystem locomotion;
-    CommandInterpreter& interpreter;
+    CommandInterpreter & interpreter;
 
 public:
-    Robot(int servoPin, CommandInterpreter& cmd);
+    Robot(
+        int r1, int r2, int l1, int l2,
+        int r3, int r4, int l3, int l4,
+        CommandInterpreter & cmd
+    );
+
     void init();
     void executeCommand(Command cmd);
 };

@@ -5,7 +5,7 @@
 
 class CommandInterpreter {
 public:
-    Command interpret(int joystickValue);
+    Command interpret(char input);
 };
 
 #endif
