@@ -1,17 +1,18 @@
 from fastapi import APIRouter
-from prometheus_client import generate_latest
-from fastapi.responses import Response
-
+from fastapi.responses import Response, JSONResponse
+from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
 
 router = APIRouter()
 
 
-@router.get("/metrics")
-def metrics():
-
-    data = generate_latest()
-
+@router.get("/metrics", summary="Prometheus metrics scrape endpoint")
+def metrics() -> Response:
     return Response(
-        content=data,
-        media_type="text/plain"
+        content=generate_latest(),
+        media_type=CONTENT_TYPE_LATEST,
     )
+
+
+@router.get("/health", summary="Liveness probe")
+def health() -> JSONResponse:
+    return JSONResponse(content={"status": "ok"})

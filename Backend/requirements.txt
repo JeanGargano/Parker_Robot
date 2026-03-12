@@ -1,6 +1,6 @@
-fastapi
-uvicorn
-paho-mqtt
-prometheus-client
-pydantic
-pydantic-settings
+fastapi==0.115.12
+uvicorn[standard]==0.34.0
+paho-mqtt==2.1.0
+prometheus-client==0.21.1
+pydantic==2.11.1
+pydantic-settings==2.8.1
