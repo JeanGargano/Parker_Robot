@@ -15,6 +15,9 @@ Command CommandInterpreter::interpret(char input) {
         case 'C':
             cmd.type = SIT;
             break;
+        case 'D':
+            cmd.type = STAND_DIAGONAL;
+            break;
 
         case 'H':
             cmd.type = HELLO;

@@ -24,6 +24,9 @@ public:
     void init();
     void stand();
     void sit();
+    void standDiagonal();
+    void walk();
+    void hello();
 
 };
 

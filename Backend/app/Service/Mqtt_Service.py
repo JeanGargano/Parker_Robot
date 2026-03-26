@@ -10,15 +10,11 @@ from app.Core.Logger import get_logger
 from app.Model.Sensor_Metrics import SensorMetrics
 from app.Core.Metrics_Registry import (
     temperature_metric,
-    uptime_metric,
     heap_metric,
-    wifi_metric,
     mqtt_connected,
     min_free_heap_metric,
     heap_fragmentation_metric,
     cpu_freq_metric,
-    boot_count_metric,
-    reset_reason_metric,
 )
 
 logger = get_logger(__name__)
@@ -121,11 +117,7 @@ class MQTTService:
 
     def _update_metrics(self, data: SensorMetrics) -> None:
         temperature_metric.set(data.temperature)
-        uptime_metric.set(data.uptime)
         heap_metric.set(data.free_heap)
-        wifi_metric.set(data.wifi_rssi)
         min_free_heap_metric.set(data.min_free_heap)
         heap_fragmentation_metric.set(data.heap_fragmentation)
         cpu_freq_metric.set(data.cpu_freq_mhz)
-        boot_count_metric.set(data.boot_count)
-        reset_reason_metric.set(data.reset_reason)

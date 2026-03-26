@@ -4,8 +4,13 @@
 enum CommandType {
     STAND,
     SIT,
+    STAND_DIAGONAL,
     HELLO,
+    DANCE,
+    EXERCISE,
     WALK,
+    TURN_RIGHT,
+    TURN_LEFT,
     UNKNOWN
 };
 

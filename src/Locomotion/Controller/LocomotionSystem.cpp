@@ -35,6 +35,10 @@
         L4.moveTo(90);
         R3.moveTo(90);
         R4.moveTo(35);
+        L1.moveTo(100);
+        R1.moveTo(90);
+        R2.moveTo(100);
+        L2.moveTo(60);
         
     }
 
@@ -44,5 +48,24 @@
         R3.moveTo(0);
         R4.moveTo(130);
 
-        // Implementa tu lógica de caminata aquí
     }
+
+    void LocomotionSystem::standDiagonal() {
+        L2.moveTo(100);
+        L1.moveTo(60);
+        R1.moveTo(130);
+        R2.moveTo(50);
+
+    }
+
+    void LocomotionSystem::hello() {
+        R4.moveTo(90);
+        for (int i = 0; i < 4; i++) {
+            L3.moveTo(90);
+            delay(500);
+            L3.moveTo(180);
+            delay(500);
+        }
+    }
+
+    

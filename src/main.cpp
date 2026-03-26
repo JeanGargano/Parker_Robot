@@ -1,32 +1,33 @@
 #include <Arduino.h>
 #include <WiFi.h>
 #include <PubSubClient.h>
-
+#include "./DS4/Interface/Ds4Controller.h"
 #include "Api/Interface/WiFiService.h"
 #include "Api/Interface/MqttService.h"
 #include "Api/Interface/HardwareMetricsApi.h"
 #include "Locomotion/Interface/Robot.h"
+#include <ESP32Servo.h>
 
 // Configuración
 #define WIFI_SSID           "Jean"
 #define WIFI_PASSWORD       "basket2004"
-#define MQTT_BROKER         "10.88.127.161"
+#define MQTT_BROKER         "10.171.41.161"
 #define MQTT_PORT           1884
 #define PUBLISH_INTERVAL_MS 5000
 
 // Pines motores — lado derecho
 #define R1_PIN 13
 #define R2_PIN 12
-#define R3_PIN 25
+#define R3_PIN 5
 #define R4_PIN 33
 
 // Pines motores — lado izquierdo
-#define L1_PIN 14
-#define L2_PIN 27
+#define L1_PIN 27
+#define L2_PIN 32
 #define L3_PIN 26
-#define L4_PIN 19
+#define L4_PIN 2
 
-// API de métricas
+// Instancias globales
 WiFiClient   wifiClient;
 PubSubClient mqttClient(wifiClient);
 WiFiService        wifiService(WIFI_SSID, WIFI_PASSWORD);
@@ -49,24 +50,24 @@ void setup() {
     mqttService.begin(MQTT_BROKER, MQTT_PORT);
     metrics.begin();
     robot.init();
+
 }
 
 void loop() {
+
     // Métricas
     mqttService.loop();
-
     unsigned long now = millis();
     if (now - lastPublish >= PUBLISH_INTERVAL_MS) {
         lastPublish = now;
         metrics.publishAllMetrics();
     }
 
-    // Locomoción
+    //Locomoción
     if (Serial.available()) {
         char input = Serial.read();
         Serial.print("Comando recibido: ");
         Serial.println(input);
-
         Command cmd = interpreter.interpret(input);
         robot.executeCommand(cmd);
     }

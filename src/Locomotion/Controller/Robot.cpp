@@ -31,8 +31,15 @@ void Robot::executeCommand(Command cmd) {
             break;
 
 
-        default:
-            Serial.println("Comando desconocido");
+        case STAND_DIAGONAL:
+            Serial.println("Comando Stand Diagonal Recibido");
+            locomotion.standDiagonal();
+            break;
+
+        case HELLO:
+            Serial.println("Comando Hello recibido");
+            locomotion.hello();
+            break;
     }
 
 }

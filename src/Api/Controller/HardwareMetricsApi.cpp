@@ -28,12 +28,7 @@ void HardwareMetricsApi::publishAllMetrics() {
     payload += "\"min_free_heap\":"      + String(ESP.getMinFreeHeap())     + ",";
     payload += "\"heap_fragmentation\":" + String(fragmentation)            + ",";
     payload += "\"cpu_freq_mhz\":"       + String(ESP.getCpuFreqMHz())      + ",";
-    payload += "\"wifi_rssi\":"          + String(WiFi.RSSI())              + ",";
-    payload += "\"wifi_channel\":"       + String(WiFi.channel())           + ",";
-    payload += "\"boot_count\":"         + String(bootCount)                + ",";
-    payload += "\"reset_reason\":"       + String((int)esp_reset_reason())  + ",";
-    payload += "\"uptime\":"             + String(millis() / 1000);
-
+    payload += "\"wifi_rssi\":"          + String(WiFi.RSSI());
     payload += "}";
 
     mqtt->publish("esp32/metrics", payload);
